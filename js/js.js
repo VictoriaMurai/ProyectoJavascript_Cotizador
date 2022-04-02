@@ -130,17 +130,6 @@ const cargarResultado = () => {
 
 */
 
-
-
-const selectAuto = document.querySelector("#selectAuto")
-const selectSeguro = document.querySelector("#selectSeguro")
-const inputDias = document.querySelector("#inputDias")
-
-const btnCotizar = document.querySelector("#btnCotizar")
-const btnCancelar = document.querySelector("#cancelar")
-const valorAlquiler = document.querySelector("#valorAlquiler")
-
-
 const arrayModeloDeVehiculo = [{"modelo": "Audi A3 Sportback", "precio": 10500, "anio": 2020}, 
                             {"modelo": "Citroen C4 Picasso", "precio": 11000, "anio": 2015},
                             {"modelo": "Mercedes B Class", "precio": 12500, "anio": 2021},
@@ -152,16 +141,29 @@ const arraySeguro = [{"seguro": "Seguro base", "precio": 2500},
                     {"seguro": "Seguro integral", "precio": 4000}]
 
 
+const selectAuto = document.querySelector("#selectAuto")
+const selectSeguro = document.querySelector("#selectSeguro")
+const inputDias = document.querySelector("#inputDias")
+
+const btnCotizar = document.querySelector("#btnCotizar")
+const btnCancelar = document.querySelector("#cancelar")
+const valorAlquiler = document.querySelector("#valorAlquiler")
+
+let factorVehiculo = "valorInicialBasura"
+let factorSeguro = "valorInicialBasura"
+let dias = "valorInicialBasura"
+
+
 
 class Cotizador {
     constructor(vehiculoSelec, seguroSelec, diasSelec){
-        this.vehiculo = vehiculoSelec
-        this.seguro = seguroSelec
-        this.dias = diasSelec
+        this.vehiculoSelec = vehiculoSelec
+        this.seguroSelec = seguroSelec
+        this.diasSelec = diasSelec
     }
 
     calcularAlquiler = () => {
-        const resultado = (this.vehiculo + this.seguro) * dias
+        const resultado = (this.vehiculoSelec + this.seguroSelec) * this.diasSelec
             return parseFloat(resultado)
     }
 }
@@ -189,19 +191,25 @@ const datosNoIngresados = () => {
 const cotizarAlquiler = () => {
     //debugger
     if (datosNoIngresados()) {
-        alert("Por favor, complete todos los campos para cotizar.")
+        Swal.fire({
+            title: "Datos no ingresados",
+            text: "Por favor, complete todos los campos para cotizar.",
+            icon: "warning",
+            confirmButtonText: "OK"
+        })
         return
     }
+
     else{
         factorVehiculo = parseFloat(selectAuto.value)
         factorSeguro = parseFloat(selectSeguro.value)
         dias = parseInt(inputDias.value)
-        valorDeAlquiler = Cotizacion.calcularAlquiler()
-        valorAlquiler.innerText = `$ ${valorDeAlquiler.toFixed(2)}`
+        valorAlquiler = Cotizacion.calcularAlquiler()
+        valorAlquiler.innerText = `$ ${valorAlquiler.toFixed(2)}`
     }
 }
 
-const Cotizacion = new Cotizador(arrayModeloDeVehiculo, arraySeguro, dias)
+const Cotizacion = new Cotizador(arrayModeloDeVehiculo, arraySeguro, inputDias)
 
 selectAuto.innerHTML += cargarModeloDeVehiculo()
 selectSeguro.innerHTML += cargarSeguro()
@@ -214,8 +222,8 @@ btnCotizar.addEventListener("click", cotizarAlquiler)
 
 const guardarDatosJSON = () => {
     const datosForm = {modelo: "", precio: 0}
-        datosForm.modelo = selectAuto.value
-        datosForm.precio = selectSeguro.value
+        datosForm.modelo = selectAuto.modelo
+        datosForm.precio = selectSeguro.seguro
         localStorage.setItem("datosDelForm", JSON.stringify(datosForm))
         console.info("Se ha almacenado el array en LS.")
 }
@@ -235,10 +243,7 @@ const recuperoDatos = () => {
 
 const limparLS = () => {
     const resp = confirm("¿Desea eliminar todos los datos almacenados?")
-        if (resp) {
-            localStorage.clear()
-            console.log("Se han eliminado todos los datos.")
-        }
+        resp && localStorage.clear(), console.log("Se han eliminado todos los datos.")
 }
 
 btnCotizar.addEventListener("click", () => guardoDatos())
