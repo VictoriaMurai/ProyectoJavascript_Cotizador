@@ -1,0 +1,46 @@
+[
+    {
+        "id": 1,
+        "img": "/img/audi-a3-sportback.jpg",
+        "nombre": "Audi A3 Sportback",
+        "categoria": "A",
+        "capacidad": "4",
+        "cajaDeCambio": "manual"
+    },
+
+    {
+        "id": 2,
+        "img": "/img/citroen-c4-picasso.png",
+        "nombre": "Citroen C4 Picasso",
+        "categoria": "A",
+        "capacidad": "4",
+        "cajaDeCambio": "manual"
+    },
+
+    {
+        "id": 3,
+        "img": "/img/mercedes-b-class.jpg",
+        "nombre": "Mercedes B Class",
+        "categoria": "A",
+        "capacidad": "4",
+        "cajaDeCambio": "manual"
+    },
+
+    {
+        "id": 4,
+        "img": "/img/opel-zafira.jpg",
+        "nombre": "Opel Zafira",
+        "categoria": "A",
+        "capacidad": "4",
+        "cajaDeCambio": "manual"
+    },
+
+    {
+        "id": 5,
+        "img": "/img/renault-kadjar.jpg",
+        "nombre": "Renault Kadjar",
+        "categoria": "A",
+        "capacidad": "4",
+        "cajaDeCambio": "manual"
+    }
+]

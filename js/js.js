@@ -143,11 +143,12 @@ const arraySeguro = [{"seguro": "Seguro base", "precio": 2500},
 
 const selectAuto = document.querySelector("#selectAuto")
 const selectSeguro = document.querySelector("#selectSeguro")
-const inputDias = document.querySelector("#inputDias")
+//const inputDias = document.querySelector("#inputDias")
 
 const btnCotizar = document.querySelector("#btnCotizar")
 const btnCancelar = document.querySelector("#cancelar")
 const valorAlquiler = document.querySelector("#valorAlquiler")
+let _valorAlquiler = 0
 
 let factorVehiculo = "valorInicialBasura"
 let factorSeguro = "valorInicialBasura"
@@ -190,6 +191,8 @@ const datosNoIngresados = () => {
 
 const cotizarAlquiler = () => {
     //debugger
+    const inputDias = document.getElementById("inputDias").value
+
     if (datosNoIngresados()) {
         Swal.fire({
             title: "Datos no ingresados",
@@ -201,15 +204,16 @@ const cotizarAlquiler = () => {
     }
 
     else{
+        const Cotizacion = new Cotizador(arrayModeloDeVehiculo[0].precio, arraySeguro[0].precio, inputDias)
         factorVehiculo = parseFloat(selectAuto.value)
         factorSeguro = parseFloat(selectSeguro.value)
         dias = parseInt(inputDias.value)
-        valorAlquiler = Cotizacion.calcularAlquiler()
-        valorAlquiler.innerText = `$ ${valorAlquiler.toFixed(2)}`
+        _valorAlquiler = Cotizacion.calcularAlquiler()
+        valorAlquiler.innerText = `$ ${_valorAlquiler.toFixed(2)}`
     }
 }
 
-const Cotizacion = new Cotizador(arrayModeloDeVehiculo, arraySeguro, inputDias)
+//const Cotizacion = new Cotizador(arrayModeloDeVehiculo, arraySeguro, inputDias)
 
 selectAuto.innerHTML += cargarModeloDeVehiculo()
 selectSeguro.innerHTML += cargarSeguro()
