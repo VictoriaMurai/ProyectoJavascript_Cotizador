@@ -1,24 +1,14 @@
-//Fetch
-
-let cardsFlota = ""
-let contenidoJSON = []
-
-const URL = `${window.location.origin}/js/flota.json`
-
-const contenidoDOM = document.querySelector("#contenido")
-const cargandoDOM = document.querySelector("#cargando")
-
-
 const retornoCardsContenido = (contenido) => {
-    const {img, nombre, categoria, capacidad, cajaDeCambio} = contenido
+    const {img, nombre, categoria, capacidad, cajaDeCambio, aireAcondicionado} = contenido
         let HTMLCard = ""
             HTMLCard += `<div class="card" style="width: 18rem;">
-                            <img src=${img}" class="card-img-top margins" alt="...">
+                            <img src="${img}" class="card-img-top margins" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title">${nombre}</h5>
                                     <p class="card-text">Categoría: ${categoria}</p>
                                     <p class="card-text">Capacidad: ${capacidad}</p>
                                     <p class="card-text">Caja: ${cajaDeCambio}</p>
+                                    <p class="card-text">Aire acondicionado: ${aireAcondicionado}</p>
                                     <a href="#" class="btn btn-primary">Reservá ahora</a>
                                 </div>
                         </div>`
@@ -27,7 +17,6 @@ const retornoCardsContenido = (contenido) => {
 }
 
 const obtengoContenido = (URL) => {
-    //debugger
     fetch(URL)
     .then((response) => response.json())
     .then((data) => {
@@ -39,8 +28,6 @@ const obtengoContenido = (URL) => {
     })
     .finally(data => cargandoDOM.innerHTML = "")
 }
-
-//obtengoContenido(URL)
 
 
 //setTimeout

@@ -1,16 +1,31 @@
+.index{
+    background-color: #192b42;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
 .h1{
-    margin-left: 3rem;
-    margin-top: 20px;
+    margin-top: 5rem;
+    margin-bottom: 3.5rem;
+    color: #8cc9be;
 }
 
 .h2{
     margin-left: 3rem;
     margin-top: 40px;
     margin-bottom: 40px;
+    color: #8cc9be;
+    text-align: center;
+}
+
+.preloader-wrapper{
+left: 50%;
+margin-left: -2em;
 }
 
 .form{
-    margin: 3rem;
     width: 50%;
 }
 
@@ -19,12 +34,26 @@
     margin-bottom: 0.600rem;
 }
 
-.card{
-    display: inline-flex;
-    margin: 5rem;
+.flota{
+    background-color: #192b42;
 }
 
-.preloader-wrapper{
+.navbar{
+    width: 100%;
+}
+
+.flotaContenido{
     display: flex;
-    margin-left: 47%;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card{
+    margin: 1rem;
+    align-items: center;
+    text-align: center;
+}
+
+.btn-primary{
+    background-color: #8cc9be;
 }
